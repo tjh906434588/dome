@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="favicon.ico"><title>powdered_handheld</title><link href="static/css/chunk-2f7ebe7a.f3b9c885.css" rel="prefetch"><link href="static/css/chunk-31272fa6.f15650b0.css" rel="prefetch"><link href="static/css/chunk-45ac15f7.83cbe24b.css" rel="prefetch"><link href="static/css/chunk-4671d535.672e4250.css" rel="prefetch"><link href="static/css/chunk-5cd19254.afe1e4c8.css" rel="prefetch"><link href="static/css/chunk-642ff0bd.3a028bb6.css" rel="prefetch"><link href="static/css/chunk-69089c1d.0c29ecac.css" rel="prefetch"><link href="static/css/chunk-753a3328.88e5058c.css" rel="prefetch"><link href="static/css/chunk-8af525aa.57694629.css" rel="prefetch"><link href="static/css/chunk-9e79e7e6.4cb33ee3.css" rel="prefetch"><link href="static/css/chunk-a3379b76.a5150736.css" rel="prefetch"><link href="static/css/chunk-e81d9be2.4e252079.css" rel="prefetch"><link href="static/js/chunk-2f7ebe7a.088d0a6e.js" rel="prefetch"><link href="static/js/chunk-31272fa6.6f768b64.js" rel="prefetch"><link href="static/js/chunk-45ac15f7.b2c7bfbd.js" rel="prefetch"><link href="static/js/chunk-4671d535.5754b5ac.js" rel="prefetch"><link href="static/js/chunk-5cd19254.d65c90c4.js" rel="prefetch"><link href="static/js/chunk-642ff0bd.0f167f0b.js" rel="prefetch"><link href="static/js/chunk-69089c1d.522fe299.js" rel="prefetch"><link href="static/js/chunk-753a3328.58fdb976.js" rel="prefetch"><link href="static/js/chunk-8af525aa.04bbd899.js" rel="prefetch"><link href="static/js/chunk-9e79e7e6.e12a0adb.js" rel="prefetch"><link href="static/js/chunk-a3379b76.97f0910c.js" rel="prefetch"><link href="static/js/chunk-e81d9be2.90787570.js" rel="prefetch"><link href="static/css/app.5d754f67.css" rel="preload" as="style"><link href="static/css/chunk-vendors.076ab4bc.css" rel="preload" as="style"><link href="static/js/app.1b3888bc.js" rel="preload" as="script"><link href="static/js/chunk-vendors.9011b46a.js" rel="preload" as="script"><link href="static/css/chunk-vendors.076ab4bc.css" rel="stylesheet"><link href="static/css/app.5d754f67.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but powdered_handheld doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="static/js/chunk-vendors.9011b46a.js"></script><script src="static/js/app.1b3888bc.js"></script></body><script>document.addEventListener("plusready", function() {
+      var first = null;
+      var webview = plus.webview.currentWebview();
+      plus.key.addEventListener("backbutton", function() {
+        webview.canBack(function(e) {
+          if (e.canBack) {
+            webview.back(); //这里不建议修改自己跳转的路径
+          } else {
+            //首次按键，提示‘再按一次退出应用’
+            if (!first) {
+              first = new Date().getTime(); //获取第一次点击的时间戳
+              plus.nativeUI.toast("再按一次退出应用", {
+                duration: "short",
+              }); //通过H5+ API 调用Android 上的toast 提示框
+              setTimeout(function() {
+                first = null;
+              }, 1000);
+            } else {
+              // 获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+              if (new Date().getTime() - first < 1000) {
+                plus.runtime.quit(); //退出应用
+              }
+            }
+          }
+        });
+      });
+    });</script></html>

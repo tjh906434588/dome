@@ -1,0 +1,12 @@
+:root {
+  --statusBarHeight: "46px";
+}
+
+.van-dialog {
+  /deep/.van-dialog__content {
+    /deep/.van-dialog__message {
+      padding-top: 26px;
+      font-size: 16px;
+    }
+  }
+}
